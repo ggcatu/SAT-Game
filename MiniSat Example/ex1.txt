@@ -1,0 +1,6 @@
+c http://www.dwheeler.com/essays/minisat-user-guide.html
+c minisat ex1.txt ex2.txt
+ p cnf 5 3
+ 1 -5 4 0
+ -1 5 3 4 0
+ -3 -4 0
