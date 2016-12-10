@@ -48,6 +48,7 @@ int main(int argc, char * argv[]){
     int N = 5, M = 5;
     int i = 0, k = 0, p = 0;
     int f;
+    int ee;
     vector<int> horizontal;
     vector<int> vertical;
     vector<int> last_horizontal;
@@ -61,7 +62,7 @@ int main(int argc, char * argv[]){
             if (p == 5)
                 break;
             if (i<6){
-                // cout << n << " ";
+                cout << n << " ";
                 f = n;
                 if (i == 2){
                     horizontal.push_back(int(f)>0);
@@ -69,10 +70,10 @@ int main(int argc, char * argv[]){
                 if (i == 5){
                     vertical.push_back(int(f)>0);
                 }
-                if (k == 4){
-                    if (i == 3){
-                        vertical.push_back(int(f)>0);
-                    }
+                 if (k == 4){
+                     if (i == 3){
+                        ee = int(f)>0;
+                     }
                 }
                 if (p == 4){
                     if (i == 4){
@@ -83,16 +84,17 @@ int main(int argc, char * argv[]){
                 if (i == 31){
                     k++;
                     if (k == 5){
-                        // cout << endl;
+                        vertical.push_back(ee);
+                        cout << endl;
                         cVector(horizontal);
                         cVector(vertical);
-                        // cout << endl;
+                        cout << endl;
                         horizontal.clear();
                         vertical.clear();
                         k = 0;
                         p++;
                     }
-                    // cout << endl;
+                    cout << endl;
                     i = 1;
                     
                 }
