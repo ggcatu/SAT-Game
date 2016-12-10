@@ -52,6 +52,7 @@ vector< vector<int> > ClausulasUno;
 vector< vector<int> > ClausulasDos;
 vector< vector<int> > ClausulasTres;
 vector< vector<int> > ClausulasCuatro;
+vector< vector<int> > ClausulasCinco;
 
 void GenerarCero(int N, int M){
     int aux,aux2;
@@ -598,15 +599,111 @@ void GenerarCuatro(int N, int M){
 	}
 }
 
+void GenerarCinco(int N, int M){
+    vector<int> auxV;
+    int n,s,e,w;
+    for(int i = 0; i < N; i++){
+        for(int j = 0; j < M; j++){
+            n = Celdas[i][j].n;
+            s = Celdas[i][j].s;
+            e = Celdas[i][j].e;
+            w = Celdas[i][j].w;
+            auxV.push_back(-n);
+            auxV.push_back(w);
+            if(i-1 >= 0){
+                auxV.push_back(Celdas[i-1][j].w);
+            }
+            if(j-1 >= 0){
+                auxV.push_back(-Celdas[i][j-1].n);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(-n);
+            auxV.push_back(w);
+            if(i-1 >= 0){
+                auxV.push_back(Celdas[i-1][j].e);
+            }
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].n);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+
+            auxV.push_back(-w);
+            auxV.push_back(n);
+            if(i-1 >= 0){
+                auxV.push_back(Celdas[i-1][j].w);
+            }
+            if(j-1 >= 0){
+                auxV.push_back(-Celdas[i][j-1].n);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(-w);
+            auxV.push_back(s);
+            if(i+1 < N){
+                auxV.push_back(Celdas[i+1][j].w);
+            }
+            if(j-1 >= 0){
+                auxV.push_back(-Celdas[i][j-1].s);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+
+            auxV.push_back(-e);
+            auxV.push_back(n);
+            if(i-1 >= 0){
+                auxV.push_back(Celdas[i-1][j].e);
+            }
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].n);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(-e);
+            auxV.push_back(s);
+            if(i+1 < N){
+                auxV.push_back(Celdas[i+1][j].e);
+            }
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].s);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+
+            auxV.push_back(-s);
+            auxV.push_back(w);
+            if(i+1 < N){
+                auxV.push_back(Celdas[i+1][j].w);
+            }
+            if(j-1 >= 0){
+                auxV.push_back(-Celdas[i][j-1].s);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(-s);
+            auxV.push_back(e);
+            if(i+1 < N){
+                auxV.push_back(Celdas[i+1][j].e);
+            }
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].s);
+            }
+            ClausulasCinco.push_back(auxV);
+            auxV.clear();
+        }
+    }
+}
+
 void GenerarArchivo(){
     ofstream outfile;
     outfile.open("Sat.txt");
-    vector< vector<int> > claus [5] = {ClausulasCero, ClausulasUno, ClausulasDos, ClausulasTres, ClausulasCuatro};
+    vector< vector<int> > claus [6] = {ClausulasCero, ClausulasUno, ClausulasDos, ClausulasTres, ClausulasCuatro, ClausulasCinco};
     int clausulas = 0;
-    for(int h = 0; h < 5;h++)
+    for(int h = 0; h < 6; h++)
     	clausulas += claus[h].size();
     outfile << "p cnf " << last_number-1 << " " << clausulas << endl;
-    for(int h = 0; h < 5; h++){
+    for(int h = 0; h < 6; h++){
         for(int i = 0; i < claus[h].size(); i++){
             for(int j = 0; j < claus[h][i].size(); j++){
                 if (j < claus[h][i].size() -1){
