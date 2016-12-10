@@ -61,10 +61,10 @@ void GenerarCero(int N, int M){
         for(int j = 0; j < M; j++){
             auxV.clear();
             auxV2.clear();
-            auxV.push_back(-Celdas[i][j].e);
-            auxV.push_back(Celdas[i+1][j].w);
-            auxV2.push_back(Celdas[i][j].e);
-            auxV2.push_back(-Celdas[i+1][j].w);
+            auxV.push_back(-Celdas[i][j].n);
+            auxV.push_back(Celdas[i+1][j].s);
+            auxV2.push_back(Celdas[i][j].n);
+            auxV2.push_back(-Celdas[i+1][j].s);
             ClausulasCero.push_back(auxV);
             ClausulasCero.push_back(auxV2);
         }
@@ -74,10 +74,10 @@ void GenerarCero(int N, int M){
         for(int j = 0; j < M-1; j++){
             auxV.clear();
             auxV2.clear();
-            auxV.push_back(-Celdas[i][j].n);
-            auxV.push_back(Celdas[i][j+1].s);
-            auxV2.push_back(Celdas[i][j].n);
-            auxV2.push_back(-Celdas[i][j+1].s);
+            auxV.push_back(-Celdas[i][j].e);
+            auxV.push_back(Celdas[i][j+1].w);
+            auxV2.push_back(Celdas[i][j].e);
+            auxV2.push_back(-Celdas[i][j+1].w);
             ClausulasCero.push_back(auxV);
             ClausulasCero.push_back(auxV2);
         }
@@ -292,55 +292,55 @@ void GenerarDos(int N, int M){
         ClausulasDos.push_back(auxV);
         auxV.clear();
     }
-    // for(int i = 1; i < N-1; i++){
-    //     for(int j = 1; j < M-1; j++){
-    //         auxV.clear();
-    //         n = Celdas[i][j].n;
-    //         s = Celdas[i][j].s;
-    //         e = Celdas[i][j].e;
-    //         w = Celdas[i][j].w;
-    //         z = Celdas[i][j].z;
-    //         auxV.push_back(z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(n);
-    //         auxV.push_back(-Celdas[i][j+1].z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(e);
-    //         auxV.push_back(-Celdas[i+1][j].z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(s);
-    //         auxV.push_back(-Celdas[i][j-1].z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(w);
-    //         auxV.push_back(-Celdas[i-1][j].z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(n);
-    //         auxV.push_back(-Celdas[i][j+1].z);
-    //         auxV.push_back(z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(e);
-    //         auxV.push_back(-Celdas[i+1][j].z);
-    //         auxV.push_back(z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(s);
-    //         auxV.push_back(-Celdas[i][j-1].z);
-    //         auxV.push_back(z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //         auxV.push_back(w);
-    //         auxV.push_back(-Celdas[i-1][j].z);
-    //         auxV.push_back(z);
-    //         ClausulasDos.push_back(auxV);
-    //         auxV.clear();
-    //     }
-    // }
+    for(int i = 1; i < N-1; i++){
+        for(int j = 1; j < M-1; j++){
+            auxV.clear();
+            n = Celdas[i][j].n;
+            s = Celdas[i][j].s;
+            e = Celdas[i][j].e;
+            w = Celdas[i][j].w;
+            z = Celdas[i][j].z;
+            auxV.push_back(z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(n);
+            auxV.push_back(-Celdas[i][j+1].z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(e);
+            auxV.push_back(-Celdas[i+1][j].z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(s);
+            auxV.push_back(-Celdas[i][j-1].z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(w);
+            auxV.push_back(-Celdas[i-1][j].z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(n);
+            auxV.push_back(-Celdas[i][j+1].z);
+            auxV.push_back(z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(e);
+            auxV.push_back(-Celdas[i+1][j].z);
+            auxV.push_back(z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(s);
+            auxV.push_back(-Celdas[i][j-1].z);
+            auxV.push_back(z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+            auxV.push_back(w);
+            auxV.push_back(-Celdas[i-1][j].z);
+            auxV.push_back(z);
+            ClausulasDos.push_back(auxV);
+            auxV.clear();
+        }
+    }
 }
 
 void GenerarTres(int N, int M){
@@ -405,12 +405,12 @@ void GenerarCuatro(int N, int M){
 void GenerarArchivo(){
     ofstream outfile;
     outfile.open("Sat.txt");
-    vector< vector<int> > claus [4] = {ClausulasCero, ClausulasUno, ClausulasDos, ClausulasCuatro};
+    vector< vector<int> > claus [5] = {ClausulasCero, ClausulasUno, ClausulasDos, ClausulasTres, ClausulasCuatro};
     int clausulas = 0;
-    for(int h = 0; h < 4;h++)
+    for(int h = 0; h < 5;h++)
     	clausulas += claus[h].size();
-    outfile << "p cnf " << last_number << " " << clausulas << endl;
-    for(int h = 0; h < 4; h++){
+    outfile << "p cnf " << last_number-1 << " " << clausulas << endl;
+    for(int h = 0; h < 5; h++){
         for(int i = 0; i < claus[h].size(); i++){
             for(int j = 0; j < claus[h][i].size(); j++){
                 if (j < claus[h][i].size() -1){
@@ -440,7 +440,7 @@ int main(int argc, char * argv[]){
             cout << aux << endl;
             for(int j = 0; j < m; j++){
                 Celdas[i].push_back(Celda(clausula,clausula+1,clausula+2,clausula+3,clausula+4,n,m,aux[j]));
-                clausula += 6;
+                clausula += 5+(n*m);
             }
         }
         cout << clausula << endl;
