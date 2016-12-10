@@ -161,7 +161,7 @@ z(i,j) <=> [-q(i,j,n) & z(i,j+1)] v [-q(i,j,e) & z(i+1,j)] v [-q(i,j,s) & z(i,j-
 Cláusulas tipo 3
 ----------------
 
-Tenemos que describir cuando una celda es alcanzable desde otra
+Tenemos que describir cuando una celda es alcanzable desde otras
 celda de forma inductiva. Utilizamos el símbolo r(c,c') para denotar
 que la celda c' es alcanzable desde la celda c. Inicialmente, toda
 celda c es alcanzable desde ella misma:

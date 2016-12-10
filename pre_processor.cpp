@@ -21,15 +21,22 @@ class Celda {
       int e;
       int w;
       int z;
-      int r;
+      vector< vector<int> > r;
       char etiqueta;
-      Celda(int N, int E, int S, int W, int Z, int R, char Et){
+      Celda(int N, int E, int S, int W, int Z, int I, int J, char Et){
+        int p;
         n = N;
         e = E;
         s = S;
         w = W;
         z = Z;
-        r = R;
+        r.resize(I);
+        p = Z+1;
+        for(int i = 0; i < I; i++){
+            for(int j = 0; j < J; j++){
+                r[i].push_back(p++);
+            }
+        }
         etiqueta = Et;
       }; 
 };
@@ -39,6 +46,8 @@ vector< vector<Celda> > Celdas;
 vector< vector<int> > ClausulasCero;
 vector< vector<int> > ClausulasUno;
 vector< vector<int> > ClausulasDos;
+vector< vector<int> > ClausulasTres;
+vector< vector<int> > ClausulasCuatro;
 
 void GenerarCero(int N, int M){
     int aux,aux2;
@@ -111,6 +120,7 @@ void GenerarUno(int N, int M){
                 auxV.push_back(w);
                 ClausulasUno.push_back(auxV);
                 auxV.clear();
+
                 auxV.push_back(-n);
                 auxV.push_back(-e);
                 ClausulasUno.push_back(auxV);
@@ -330,6 +340,66 @@ void GenerarDos(int N, int M){
     }
 }
 
+void GenerarTres(int N, int M){
+	vector<int> auxV;
+	for(int i = 0; i < N; i++){
+       for(int j = 0; j < M; j++){
+       		// Yo mismo me alcanzo
+       		auxV.push_back(Celdas[i][j].r[i][j]);
+       		auxV.clear();
+       		for(int p = 0; p < N; p++){
+      			for(int q = 0; q < M; q++){
+		    		if (p-1 >= 0){
+		    			auxV.push_back(-Celdas[i][j].r[p][q]);
+		    			auxV.push_back(Celdas[p][q].n);
+		    			auxV.push_back(Celdas[i][j].r[p-1][q]);
+		    			ClausulasTres.push_back(auxV);
+		    			auxV.clear();
+		    		}
+		    		if (q+1 < M){
+		    			auxV.push_back(-Celdas[i][j].r[p][q]);
+		    			auxV.push_back(Celdas[p][q].e);
+		    			auxV.push_back(Celdas[i][j].r[p][q+1]);
+		    			ClausulasTres.push_back(auxV);
+		    			auxV.clear();
+		    		}
+		    		if (q-1 >= 0){
+		    			auxV.push_back(-Celdas[i][j].r[p][q]);
+		    			auxV.push_back(Celdas[p][q].w);
+		    			auxV.push_back(Celdas[i][j].r[p][q-1]);
+		    			ClausulasTres.push_back(auxV);
+		    			auxV.clear();
+		    		}
+		    		if (p+1 < N){
+		    			auxV.push_back(-Celdas[i][j].r[p][q]);
+		    			auxV.push_back(Celdas[p][q].s);
+		    			auxV.push_back(Celdas[i][j].r[p+1][q]);
+		    			ClausulasTres.push_back(auxV);
+		    			auxV.clear();
+		    		}
+		    	}
+		    }
+    	}
+	}
+}
+
+void GenerarCuatro(int N, int M){
+	vector<int> auxV;
+	for(int i = 0; i < N; i++){
+       for(int j = 0; j < M; j++){
+       		for(int p = 0; p < N; p++){
+      			for(int q = 0; q < M; q++){
+		    		auxV.push_back(-Celdas[i][j].z);
+		    		auxV.push_back(-Celdas[p][q].z);
+		    		auxV.push_back(Celdas[i][j].r[p][q]);
+		    		ClausulasCuatro.push_back(auxV);
+		    		auxV.clear();
+		    	}
+		    }
+    	}
+	}
+}
+
 int main(int argc, char * argv[]){
 	int n, m, index;
     string line;
@@ -343,7 +413,7 @@ int main(int argc, char * argv[]){
             iss >> aux;
             cout << aux << endl;
             for(int j = 0; j < m; j++){
-                Celdas[i].push_back(Celda(clausula,clausula+1,clausula+2,clausula+3,clausula+4,clausula+5,aux[j]));
+                Celdas[i].push_back(Celda(clausula,clausula+1,clausula+2,clausula+3,clausula+4,n,m,aux[j]));
                 clausula += 6;
             }
         }
@@ -379,6 +449,36 @@ int main(int argc, char * argv[]){
                 }
                 else{
                     cout << ClausulasDos[i][j] << "}" ;
+                }
+            }
+            cout << "and" << endl;
+        }
+
+        cout << "Clausulas 3" << endl;
+        GenerarTres(n,m);
+        for(int i = 0; i < ClausulasTres.size(); i++){
+            cout << "{";
+            for(int j = 0; j < ClausulasTres[i].size(); j++){
+                if (j < ClausulasTres[i].size() -1){
+                    cout << ClausulasTres[i][j] << "v" ;
+                }
+                else{
+                    cout << ClausulasTres[i][j] << "}" ;
+                }
+            }
+            cout << "and" << endl;
+        }
+
+        cout << "Clausulas 4" << endl;
+        GenerarCuatro(n,m);
+        for(int i = 0; i < ClausulasCuatro.size(); i++){
+            cout << "{";
+            for(int j = 0; j < ClausulasCuatro[i].size(); j++){
+                if (j < ClausulasCuatro[i].size() -1){
+                    cout << ClausulasCuatro[i][j] << "v" ;
+                }
+                else{
+                    cout << ClausulasCuatro[i][j] << "}" ;
                 }
             }
             cout << "and" << endl;
