@@ -614,7 +614,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i-1][j].w);
             }
             if(j-1 >= 0){
-                auxV.push_back(-Celdas[i][j-1].n);
+                auxV.push_back(Celdas[i][j-1].n);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -624,7 +624,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i-1][j].e);
             }
             if(j+1 < M){
-                auxV.push_back(-Celdas[i][j+1].n);
+                auxV.push_back(Celdas[i][j+1].n);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -635,7 +635,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i-1][j].w);
             }
             if(j-1 >= 0){
-                auxV.push_back(-Celdas[i][j-1].n);
+                auxV.push_back(Celdas[i][j-1].n);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -645,7 +645,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i+1][j].w);
             }
             if(j-1 >= 0){
-                auxV.push_back(-Celdas[i][j-1].s);
+                auxV.push_back(Celdas[i][j-1].s);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -656,7 +656,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i-1][j].e);
             }
             if(j+1 < M){
-                auxV.push_back(-Celdas[i][j+1].n);
+                auxV.push_back(Celdas[i][j+1].n);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -666,7 +666,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i+1][j].e);
             }
             if(j+1 < M){
-                auxV.push_back(-Celdas[i][j+1].s);
+                auxV.push_back(Celdas[i][j+1].s);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -677,7 +677,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i+1][j].w);
             }
             if(j-1 >= 0){
-                auxV.push_back(-Celdas[i][j-1].s);
+                auxV.push_back(Celdas[i][j-1].s);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
@@ -687,7 +687,7 @@ void GenerarCinco(int N, int M){
                 auxV.push_back(Celdas[i+1][j].e);
             }
             if(j+1 < M){
-                auxV.push_back(-Celdas[i][j+1].s);
+                auxV.push_back(Celdas[i][j+1].s);
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
