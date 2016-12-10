@@ -337,11 +337,11 @@ void GenerarDos(int N, int M){
         e = Celdas[i][0].e;
         w = Celdas[i][0].w;
         z = Celdas[i][0].z;
-        auxV.push_back(w);
+        auxV.push_back(-w);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-w);
+        auxV.push_back(w);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -353,11 +353,11 @@ void GenerarDos(int N, int M){
         e = Celdas[i][M-1].e;
         w = Celdas[i][M-1].w;
         z = Celdas[i][M-1].z;
-        auxV.push_back(e);
+        auxV.push_back(-e);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-e);
+        auxV.push_back(e);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -369,11 +369,11 @@ void GenerarDos(int N, int M){
         e = Celdas[0][j].e;
         w = Celdas[0][j].w;
         z = Celdas[0][j].z;
-        auxV.push_back(s);
+        auxV.push_back(-s);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-s);
+        auxV.push_back(s);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -385,11 +385,11 @@ void GenerarDos(int N, int M){
         e = Celdas[N-1][j].e;
         w = Celdas[N-1][j].w;
         z = Celdas[N-1][j].z;
-        auxV.push_back(n);
+        auxV.push_back(-n);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-n);
+        auxV.push_back(n);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -640,16 +640,13 @@ int main(int argc, char * argv[]){
                 clausula += 5+(n*m);
             }
         }
-        cout << clausula << endl;
-        cout << Celdas[0][1].n << endl;
-        cout << "Clausulas 0" << endl;
         GenerarCero(n,m);
         GenerarUno(n,m);
         GenerarDos(n,m);
         GenerarTres(n,m);
         GenerarCuatro(n,m);
         GenerarArchivo();
-        system("minisat Sat.txt ee.txt");
-        system("post_processor");
+        //system("minisat Sat.txt ee.txt");
+        //system("./post_processor");
 	}
 }

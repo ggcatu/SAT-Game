@@ -62,7 +62,11 @@ int main(int argc, char * argv[]){
             if (p == 5)
                 break;
             if (i<6){
+<<<<<<< HEAD
                // cout << n << " ";
+=======
+                //cout << n << " ";
+>>>>>>> 161a85ca894009389015dff06a5272f159399265
                 f = n;
                 if (i == 2){
                     horizontal.push_back(int(f)>0);
@@ -85,10 +89,17 @@ int main(int argc, char * argv[]){
                     k++;
                     if (k == 5){
                         vertical.push_back(ee);
+<<<<<<< HEAD
                        // cout << endl;
                         cVector(horizontal);
                         cVector(vertical);
                       //  cout << endl;
+=======
+                        //cout << endl;
+                        cVector(horizontal);
+                        cVector(vertical);
+                        //cout << endl;
+>>>>>>> 161a85ca894009389015dff06a5272f159399265
                         horizontal.clear();
                         vertical.clear();
                         k = 0;
