@@ -400,6 +400,26 @@ void GenerarCuatro(int N, int M){
 	}
 }
 
+void GenerarArchivo(){
+    ofstream outfile;
+    outfile.open("Sat.txt");
+    vector< vector<int> > claus [5] = {ClausulasCero, ClausulasUno, ClausulasDos, ClausulasTres, ClausulasCuatro};
+    for(int h = 0; h < 5; h++){
+        for(int i = 0; i < claus[h].size(); i++){
+            for(int j = 0; j < claus[h][i].size(); j++){
+                if (j < claus[h][i].size() -1){
+                    outfile << claus[h][i][j] << " " ;
+                }
+                else{
+                    outfile << claus[h][i][j] << " 0" ;
+                }
+            }
+            outfile << endl;
+        }
+    }
+    outfile.close();
+}
+
 int main(int argc, char * argv[]){
 	int n, m, index;
     string line;
@@ -421,67 +441,10 @@ int main(int argc, char * argv[]){
         cout << Celdas[0][1].n << endl;
         cout << "Clausulas 0" << endl;
         GenerarCero(n,m);
-        for(int i = 0; i < ClausulasCero.size(); i++){
-            cout << "{" << ClausulasCero[i][0] << "v" << ClausulasCero[i][1] << "}" << " and " << endl;
-        }
-        cout << endl;
-        cout << "Clausulas 1" << endl;
         GenerarUno(n,m);
-        for(int i = 0; i < ClausulasUno.size(); i++){
-            cout << "{";
-            for(int j = 0; j < ClausulasUno[i].size(); j++){
-                if (j < ClausulasUno[i].size() -1){
-                    cout << ClausulasUno[i][j] << "v" ;
-                }
-                else{
-                    cout << ClausulasUno[i][j] << "}" ;
-                }
-            }
-            cout << "and" << endl;
-        }
-        cout << "Clausulas 2" << endl;
         GenerarDos(n,m);
-        for(int i = 0; i < ClausulasDos.size(); i++){
-            cout << "{";
-            for(int j = 0; j < ClausulasDos[i].size(); j++){
-                if (j < ClausulasDos[i].size() -1){
-                    cout << ClausulasDos[i][j] << "v" ;
-                }
-                else{
-                    cout << ClausulasDos[i][j] << "}" ;
-                }
-            }
-            cout << "and" << endl;
-        }
-
-        cout << "Clausulas 3" << endl;
         GenerarTres(n,m);
-        for(int i = 0; i < ClausulasTres.size(); i++){
-            cout << "{";
-            for(int j = 0; j < ClausulasTres[i].size(); j++){
-                if (j < ClausulasTres[i].size() -1){
-                    cout << ClausulasTres[i][j] << "v" ;
-                }
-                else{
-                    cout << ClausulasTres[i][j] << "}" ;
-                }
-            }
-            cout << "and" << endl;
-        }
-
-        cout << "Clausulas 4" << endl;
         GenerarCuatro(n,m);
-        for(int i = 0; i < ClausulasCuatro.size(); i++){
-            cout << "{";
-            for(int j = 0; j < ClausulasCuatro[i].size(); j++){
-                if (j < ClausulasCuatro[i].size() -1){
-                    cout << ClausulasCuatro[i][j] << "v" ;
-                }
-                else{
-                    cout << ClausulasCuatro[i][j] << "}" ;
-                }
-            }
-            cout << "and" << endl;
-        }
+        GenerarArchivo();
 	}
 }
