@@ -8,9 +8,7 @@ resultado = input("Coloque el output")
 '''
 tablero = "5 5 4.32. 222.3 0..1. 2.2.. .2323"
 
-resultado = "5 5 10001 111111 10101 010110 01001 001010 01011 010110 10101 111011 10110"
-
-
+resultado = "5 5 10100 111010 11111 111010 01111 000010 01000 000010 11111 101010 01101"
 
 tablero = tablero.split()
 resultado = resultado.split()

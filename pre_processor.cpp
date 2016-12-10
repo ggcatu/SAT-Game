@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
 int last_number;
@@ -329,38 +330,6 @@ void GenerarUno(int N, int M){
 void GenerarDos(int N, int M){
     vector<int> auxV;
     int n,s,e,w,z;
-    for(int j = 0; j < M; j++){
-        auxV.clear();
-        n = Celdas[0][j].n;
-        s = Celdas[0][j].s;
-        e = Celdas[0][j].e;
-        w = Celdas[0][j].w;
-        z = Celdas[0][j].z;
-        auxV.push_back(w);
-        auxV.push_back(z);
-        ClausulasDos.push_back(auxV);
-        auxV.clear();
-        auxV.push_back(-w);
-        auxV.push_back(-z);
-        ClausulasDos.push_back(auxV);
-        auxV.clear();
-    }
-    for(int j = 0; j < M; j++){
-        auxV.clear();
-        n = Celdas[N-1][j].n;
-        s = Celdas[N-1][j].s;
-        e = Celdas[N-1][j].e;
-        w = Celdas[N-1][j].w;
-        z = Celdas[N-1][j].z;
-        auxV.push_back(e);
-        auxV.push_back(z);
-        ClausulasDos.push_back(auxV);
-        auxV.clear();
-        auxV.push_back(-e);
-        auxV.push_back(-z);
-        ClausulasDos.push_back(auxV);
-        auxV.clear();
-    }
     for(int i = 0; i < N; i++){
         auxV.clear();
         n = Celdas[i][0].n;
@@ -368,11 +337,11 @@ void GenerarDos(int N, int M){
         e = Celdas[i][0].e;
         w = Celdas[i][0].w;
         z = Celdas[i][0].z;
-        auxV.push_back(s);
+        auxV.push_back(w);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-s);
+        auxV.push_back(-w);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -384,6 +353,38 @@ void GenerarDos(int N, int M){
         e = Celdas[i][M-1].e;
         w = Celdas[i][M-1].w;
         z = Celdas[i][M-1].z;
+        auxV.push_back(e);
+        auxV.push_back(z);
+        ClausulasDos.push_back(auxV);
+        auxV.clear();
+        auxV.push_back(-e);
+        auxV.push_back(-z);
+        ClausulasDos.push_back(auxV);
+        auxV.clear();
+    }
+    for(int j = 0; j < M; j++){
+        auxV.clear();
+        n = Celdas[0][j].n;
+        s = Celdas[0][j].s;
+        e = Celdas[0][j].e;
+        w = Celdas[0][j].w;
+        z = Celdas[0][j].z;
+        auxV.push_back(s);
+        auxV.push_back(z);
+        ClausulasDos.push_back(auxV);
+        auxV.clear();
+        auxV.push_back(-s);
+        auxV.push_back(-z);
+        ClausulasDos.push_back(auxV);
+        auxV.clear();
+    }
+    for(int j = 0; j < M; j++){
+        auxV.clear();
+        n = Celdas[N-1][j].n;
+        s = Celdas[N-1][j].s;
+        e = Celdas[N-1][j].e;
+        w = Celdas[N-1][j].w;
+        z = Celdas[N-1][j].z;
         auxV.push_back(n);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
@@ -648,5 +649,7 @@ int main(int argc, char * argv[]){
         GenerarTres(n,m);
         GenerarCuatro(n,m);
         GenerarArchivo();
+        system("minisat Sat.txt ee.txt");
+        system("post_processor");
 	}
 }
