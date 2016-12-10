@@ -230,11 +230,11 @@ void GenerarDos(int N, int M){
     int n,s,e,w,z;
     for(int j = 0; j < M; j++){
         auxV.clear();
-        n = Celdas[1][j].n;
-        s = Celdas[1][j].s;
-        e = Celdas[1][j].e;
-        w = Celdas[1][j].w;
-        z = Celdas[1][j].z;
+        n = Celdas[0][j].n;
+        s = Celdas[0][j].s;
+        e = Celdas[0][j].e;
+        w = Celdas[0][j].w;
+        z = Celdas[0][j].z;
         auxV.push_back(w);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
@@ -262,11 +262,11 @@ void GenerarDos(int N, int M){
     }
     for(int i = 0; i < N; i++){
         auxV.clear();
-        n = Celdas[i][1].n;
-        s = Celdas[i][1].s;
-        e = Celdas[i][1].e;
-        w = Celdas[i][1].w;
-        z = Celdas[i][1].z;
+        n = Celdas[i][0].n;
+        s = Celdas[i][0].s;
+        e = Celdas[i][0].e;
+        w = Celdas[i][0].w;
+        z = Celdas[i][0].z;
         auxV.push_back(s);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
@@ -347,7 +347,6 @@ void GenerarTres(int N, int M){
 	vector<int> auxV;
 	for(int i = 0; i < N; i++){
        for(int j = 0; j < M; j++){
-       		// Yo mismo me alcanzo
        		auxV.push_back(Celdas[i][j].r[i][j]);
        		auxV.clear();
        		for(int p = 0; p < N; p++){
