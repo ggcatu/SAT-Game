@@ -61,10 +61,10 @@ void GenerarCero(int N, int M){
         for(int j = 0; j < M; j++){
             auxV.clear();
             auxV2.clear();
-            auxV.push_back(-Celdas[i][j].n);
-            auxV.push_back(Celdas[i+1][j].s);
-            auxV2.push_back(Celdas[i][j].n);
-            auxV2.push_back(-Celdas[i+1][j].s);
+            auxV.push_back(-Celdas[i][j].s);
+            auxV.push_back(Celdas[i+1][j].n);
+            auxV2.push_back(Celdas[i][j].s);
+            auxV2.push_back(-Celdas[i+1][j].n);
             ClausulasCero.push_back(auxV);
             ClausulasCero.push_back(auxV2);
         }
@@ -351,7 +351,7 @@ void GenerarDos(int N, int M){
             ClausulasDos.push_back(auxV);
             auxV.clear();
             auxV.push_back(Celdas[i-1][j].z);
-            auxV.push_back(-a);
+            auxV.push_back(-z);
             auxV.push_back(Celdas[i][j+1].z);
             auxV.push_back(Celdas[i+1][j].z);
             auxV.push_back(Celdas[i][j-1].z);
@@ -534,6 +534,7 @@ int main(int argc, char * argv[]){
             cout << aux << endl;
             for(int j = 0; j < m; j++){
                 Celdas[i].push_back(Celda(clausula,clausula+1,clausula+2,clausula+3,clausula+4,n,m,aux[j]));
+                cout << clausula << endl;
                 clausula += 5+(n*m);
             }
         }
