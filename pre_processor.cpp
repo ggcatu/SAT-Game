@@ -363,14 +363,14 @@ int main(int argc, char * argv[]){
         }
         cout << "Clausulas 2" << endl;
         GenerarDos(n,m);
-        for(int i = 0; i < ClausulasUno.size(); i++){
+        for(int i = 0; i < ClausulasDos.size(); i++){
             cout << "{";
-            for(int j = 0; j < ClausulasUno[i].size(); j++){
-                if (j < ClausulasUno[i].size() -1){
-                    cout << ClausulasUno[i][j] << "v" ;
+            for(int j = 0; j < ClausulasDos[i].size(); j++){
+                if (j < ClausulasDos[i].size() -1){
+                    cout << ClausulasDos[i][j] << "v" ;
                 }
                 else{
-                    cout << ClausulasUno[i][j] << "}" ;
+                    cout << ClausulasDos[i][j] << "}" ;
                 }
             }
             cout << "and" << endl;
