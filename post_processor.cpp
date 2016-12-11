@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -46,6 +47,9 @@ int main(int argc, char * argv[]){
     string aux;
 	ifstream infile("ee.txt");
     int N = 5, M = 5;
+    N = atoi(argv[1]);
+    M = atoi(argv[2]);
+    cout << "N: " << N << " M : " << M << endl;
     int i = 0, k = 0, p = 0;
     int f;
     int ee;
@@ -59,7 +63,7 @@ int main(int argc, char * argv[]){
             continue;
         istringstream iss(line);
         while(iss >> n){
-            if (p == 5)
+            if (p == N)
                 break;
             if (i<6){
 
@@ -72,20 +76,20 @@ int main(int argc, char * argv[]){
                 if (i == 5){
                     vertical.push_back(int(f)>0);
                 }
-                 if (k == 4){
+                 if (k == M-1){
                      if (i == 3){
                         ee = int(f)>0;
                      }
                 }
-                if (p == 4){
+                if (p == N-1){
                     if (i == 4){
                         last_horizontal.push_back(int(f)>0);
                     }
                 }
             } else{
-                if (i == 31){
+                if (i == 6+(N*M)){
                     k++;
-                    if (k == 5){
+                    if (k == M){
                         vertical.push_back(ee);
                        // cout << endl;
                         cVector(horizontal);

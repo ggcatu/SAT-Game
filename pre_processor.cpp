@@ -876,6 +876,8 @@ int main(int argc, char * argv[]){
         GenerarCinco(n,m);
         GenerarArchivo();
         system("minisat Sat.txt ee.txt");
-        system("post_processor");
+        stringstream ss;
+        ss << "post_processor " << n << " " << m;
+        system(ss.str().c_str());
 	}
 }

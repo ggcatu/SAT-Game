@@ -6,9 +6,9 @@ tablero = input("Coloque el input:")
 
 resultado = input("Coloque el output")
 '''
-tablero = "5 5 .2.2. .2.1. 30202 3.... ...2."
+tablero = "10 10 .1..3..... 2..1..2322 21.3...31. 22.2.313.. .2.332..22 ..30..1... .13..2321. .2..2.2.2. .323..1.21 ..2..3322."
 
-resultado = "5 5 01110 010010 00101 011101 10100 100001 10101 011110 10100 100010 11110"
+resultado = "10 10 1110111111 10011000001 1010101101 01100110110 0011010100 01001001010 1011010101 10100110101 0101000101 11011111010 1010101010 00100000100 0010110101 00011011011 1110101000 10000100011 1101011110 00111000001 0100010110 01011111011 0110101001"
 
 tablero = tablero.split()
 resultado = resultado.split()
@@ -53,7 +53,7 @@ tablero = tablero[2:]
 for i in range(len(tablero)):
 	for j in range(len(tablero[i])):
 		if (tablero[i][j] != '.'):
-			ax.text(j+alfa,N-i-1+alfa,tablero[i][j],fontsize = 40)
+			ax.text(j+alfa,N-i-1+alfa,tablero[i][j],fontsize = 20)
 
 
 
