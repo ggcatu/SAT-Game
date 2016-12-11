@@ -775,17 +775,29 @@ void GenerarCinco(int N, int M){
             ClausulasCinco.push_back(auxV);
             auxV.clear();
 
-            // No 3
-            // auxV.push_back(-e);
-            // auxV.push_back(-n);
-            // if(i-1 >= 0){
-            //     auxV.push_back(-Celdas[i-1][j].e);
-            // }
-            // if(j+1 < M){
-            //     auxV.push_back(-Celdas[i][j+1].n);
-            // }
-            // ClausulasCinco.push_back(auxV);
-            // auxV.clear();
+            if(i-1 >= 0){
+                auxV.push_back(-Celdas[i-1][j].e);
+                auxV.push_back(-e); 
+                auxV.push_back(-n);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].n);
+                auxV.push_back(-e); 
+                auxV.push_back(-n);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+            
+            if(i-1 >= 0 && j+1 < M){
+                auxV.push_back(-Celdas[i-1][j].e);
+                auxV.push_back(-e); 
+                auxV.push_back(-Celdas[i][j+1].n);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
 
 
             auxV.push_back(-e);
@@ -799,18 +811,30 @@ void GenerarCinco(int N, int M){
             ClausulasCinco.push_back(auxV);
             auxV.clear();
 
-            // auxV.push_back(-e);
-            // auxV.push_back(-s);
-            // if(i+1 < N){
-            //     auxV.push_back(-Celdas[i+1][j].e);
-            // }
-            // if(j+1 < M){
-            //     auxV.push_back(-Celdas[i][j+1].s);
-            // }
-            // ClausulasCinco.push_back(auxV);
-            // auxV.clear();
+            if(i+1 < N){
+                auxV.push_back(-Celdas[i+1][j].e);
+                auxV.push_back(-e); 
+                auxV.push_back(-s);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
 
-            // SOUTH
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].s);
+                auxV.push_back(-e); 
+                auxV.push_back(-s);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+            
+            if(i+1 < N && j+1 < M){
+                auxV.push_back(-Celdas[i+1][j].e);
+                auxV.push_back(-e); 
+                auxV.push_back(-Celdas[i][j+1].s);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+//////////////////////////////
 
             auxV.push_back(-s);
             auxV.push_back(w);
@@ -823,16 +847,29 @@ void GenerarCinco(int N, int M){
             ClausulasCinco.push_back(auxV);
             auxV.clear();
 
-            // auxV.push_back(-s);
-            // auxV.push_back(-w);
-            // if(i+1 < N){
-            //     auxV.push_back(-Celdas[i+1][j].w);
-            // }
-            // if(j-1 >= 0){
-            //     auxV.push_back(-Celdas[i][j-1].s);
-            // }
-            // ClausulasCinco.push_back(auxV);
-            // auxV.clear();
+            if(i+1 < N){
+                auxV.push_back(-Celdas[i+1][j].w);
+                auxV.push_back(-s); 
+                auxV.push_back(-w);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+
+            if(j-1 >= 0){
+                auxV.push_back(-Celdas[i][j-1].s);
+                auxV.push_back(-s); 
+                auxV.push_back(-w);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+            
+            if(i+1 < N && j-1 >= 0){
+                auxV.push_back(-Celdas[i+1][j].w);
+                auxV.push_back(-s); 
+                auxV.push_back(-Celdas[i][j-1].s);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
 
 
 
@@ -847,16 +884,31 @@ void GenerarCinco(int N, int M){
             ClausulasCinco.push_back(auxV);
             auxV.clear();
 
-            // auxV.push_back(-s);
-            // auxV.push_back(-e);
-            // if(i+1 < N){
-            //     auxV.push_back(-Celdas[i+1][j].e);
-            // }
-            // if(j+1 < M){
-            //     auxV.push_back(-Celdas[i][j+1].s);
-            // }
-            // ClausulasCinco.push_back(auxV);
-            // auxV.clear();
+
+            if(i+1 < N){
+                auxV.push_back(-Celdas[i+1][j].e);
+                auxV.push_back(-s); 
+                auxV.push_back(-e);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+
+            if(j+1 < M){
+                auxV.push_back(-Celdas[i][j+1].s);
+                auxV.push_back(-s); 
+                auxV.push_back(-e);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+            
+            if(i+1 < N && j+1 < M){
+                auxV.push_back(-Celdas[i+1][j].e);
+                auxV.push_back(-s); 
+                auxV.push_back(-Celdas[i][j+1].s);
+                ClausulasCinco.push_back(auxV);
+                auxV.clear();
+            }
+
         }
     }
 }
