@@ -512,9 +512,6 @@ void GenerarCinco(int N, int M){
             e = Celdas[i][j].e;
             w = Celdas[i][j].w;
 
-            // NORTE
-            // ###############
-            // Normal
             auxV.push_back(-n);
             auxV.push_back(w);
             if(i-1 >= 0){
@@ -525,8 +522,6 @@ void GenerarCinco(int N, int M){
             }
             ClausulasCinco.push_back(auxV);
             auxV.clear();
-
-            ////////////////////
             
             if(i-1 >= 0){
                 auxV.push_back(-Celdas[i-1][j].w);
@@ -551,8 +546,6 @@ void GenerarCinco(int N, int M){
                 ClausulasCinco.push_back(auxV);
            		auxV.clear();
             }
-
-            // NORTE 
             
             auxV.push_back(-n);
             auxV.push_back(e);
@@ -589,8 +582,6 @@ void GenerarCinco(int N, int M){
 	            auxV.clear();
         	}
 
-            // WEST
-            // ###############
             auxV.push_back(-w);
             auxV.push_back(n);
             if(i-1 >= 0){
@@ -625,9 +616,7 @@ void GenerarCinco(int N, int M){
                 ClausulasCinco.push_back(auxV);
             	auxV.clear();
             }
-            
-             // WEST
-            // ###############
+
             auxV.push_back(-w);
             auxV.push_back(s);
             if(i+1 < N){
@@ -665,8 +654,6 @@ void GenerarCinco(int N, int M){
             	auxV.clear();
             }
 
-            // EAST
-            // ##############
             auxV.push_back(-e);
             auxV.push_back(n);
             if(i-1 >= 0){
@@ -737,7 +724,6 @@ void GenerarCinco(int N, int M){
                 ClausulasCinco.push_back(auxV);
                 auxV.clear();
             }
-//////////////////////////////
 
             auxV.push_back(-s);
             auxV.push_back(w);
@@ -844,7 +830,7 @@ int main(int argc, char * argv[]){
 	int n, m, index;
     string line;
     string aux;
-	ifstream infile("example_input.txt");
+	ifstream infile("input.txt");
 	while (getline(infile, line)) {
         Celdas.clear();
         ClausulasCero.clear();
@@ -862,10 +848,8 @@ int main(int argc, char * argv[]){
         Celdas.resize(n);
         for(int i = 0; i < n; i++){
             iss >> aux;
-            //cout << aux << endl;
             for(int j = 0; j < m; j++){
                 Celdas[i].push_back(Celda(clausula,clausula+1,clausula+2,clausula+3,clausula+4,n,m,aux[j]));
-                //cout << clausula << endl;
                 clausula += 5+(n*m);
             }
         }
@@ -876,9 +860,9 @@ int main(int argc, char * argv[]){
         GenerarCuatro(n,m);
         GenerarCinco(n,m);
         GenerarArchivo();
-        system("minisat Sat.txt ee.txt");
+        system("minisat Sat.txt Satout.txt");
         stringstream ss;
-        ss << "post_processor " << n << " " << m;
+        ss << "./post_processor " << n << " " << m;
         system(ss.str().c_str());
 	}
 }

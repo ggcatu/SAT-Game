@@ -1,0 +1,163 @@
+Inteligencia Artificial I
+
+Proyecto 3
+Implementación y representacion de un juego para resolverlo con un Sat Solver.
+
+12-11006 Gabriel Gimenez
+12-11075 Anthony El Kareh
+12-10694 Eliot Díaz
+
+Todas las corridas fueron realizadas en una computadora con las siguientes 
+especificaciones:
+
+Procesador: Intel® Core™ i7-3770 CPU @ 3.40GHz × 8 
+RAM: 8GB
+SO: Ubuntu 14 64 bits
+
+El SATSolver utilizado fue MiniSat.
+
+---------------------------------------------------------------------------------
+
+Se procedio a modelar una clase Celda para representar el problema, las cuales es-
+tarian en una matriz representando todo el tablero. Cada celda tiene 5 enteros aso-
+ciados y una matriz de enteros los cuales representan el numero de las clausulas 
+{n,s,e,w,z,r(i,j) (Para cada i,j en la matriz)} respectivamente ademas de un caracter
+representando su etiqueta asociada. 
+Una vez construido el tablero, se cuenta con 5 funciones auxiliares las cuales 
+generan las clausulas de tipo 0,1,2,3,4 y 5 respectivamente de la siguiente forma:
+
+Para las clausulas tipo 0, se procedio a verificar que cada segmento interno de la 
+reticula estuviese referenciado por 2 celdas distintas, es decir, que para toda cel-
+da se debe cumplir:
+
+0 <= i < N-1 && 0 <= j < M 
+
+q(i,j,s) <=> q(i+1,j,n)
+
+0 <= i < N && 0 <= j < M-1 
+
+q(i,j,e) <=> q(i,j+1,w)
+
+
+Para las clausulas tipo 1, se procedio a verificar que las etiquetas de cada celda
+se estuviesen cumpliendo de forma correcta mediante las siguientes formulas:
+
+si n = '.'
+
+q(i,j,n) || q(i,j,s) || q(i,j,e) || q(i,j,w)
+
+si n = '0'
+
+-q(i,j,n) && -q(i,j,s) && -q(i,j,e) && -q(i,j,w)
+
+si n = '1'
+
+q(i,j,n) || q(i,j,e) || q(i,j,s) || q(i,j,w) &&
+-q(i,j,n) || -q(i,j,e) &&
+-q(i,j,n) || -q(i,j,s) &&
+-q(i,j,n) || -q(i,j,w) &&
+-q(i,j,e) || -q(i,j,s) &&
+-q(i,j,e) || -q(i,j,w) &&
+-q(i,j,s) || -q(i,j,w)
+
+si n = '2'
+
+q(i,j,n) && q(i,j,s) <=> -q(i,j,e) && -q(i,j,w) &&
+q(i,j,n) && q(i,j,e) <=> -q(i,j,s) && -q(i,j,w) &&
+q(i,j,n) && q(i,j,w) <=> -q(i,j,s) && -q(i,j,e) &&
+q(i,j,s) && q(i,j,e) <=> -q(i,j,n) && -q(i,j,w) &&
+q(i,j,s) && q(i,j,w) <=> -q(i,j,n) && -q(i,j,e) &&
+q(i,j,e) && q(i,j,w) <=> -q(i,j,n) && -q(i,j,s)
+
+si n = '3'
+
+-q(i,j,n) || -q(i,j,e) || -q(i,j,s) || -q(i,j,w) &&
+q(i,j,n) || q(i,j,e) &&
+q(i,j,n) || q(i,j,s) &&
+q(i,j,n) || q(i,j,w) &&
+q(i,j,e) || q(i,j,s) &&
+q(i,j,e) || q(i,j,w) &&
+q(i,j,s) || q(i,j,w)
+
+si n = '4'
+
+q(i,j,n) && q(i,j,s) && q(i,j,e) && q(i,j,w)
+
+Para las clausulas tipo 2, se procedio a verificar que las celdas
+internas y externas estuviesen bien definidas, por lo tanto se mo-
+delaron las siguientes reglas dadas en la ayuda, adaptadas a la ma-
+triz que representa nuestro tablero.
+
+Para cada celda c=(i,0) con 0 <= i < N en el borde izquierdo,
+
+-q(i,0,w) <=> z(i,0)
+
+Para cada celda c=(i,M-1) con 0 <= i < N en el borde derecho,
+
+-q(i,M-1,e) <=> z(i,M-1)
+
+Para cada celda c=(N-1,0) con 0 <= j < M en el borde inferior,
+
+-q(N-1,0,s) <=> z(N-1,0)
+
+Para cada celda c=(0,j) con 0 <= j < M en el borde superior,
+
+-q(0,j,n) <=> z(0,j)
+
+Para las celdas c=(i,j) con 0 < i < N y 0 < j < M, que no están
+en ningún borde, definimos:
+
+z(i,j) <=> [-q(i,j,n) & z(i-1,j)] v [-q(i,j,e) & z(i,j+1)] v [-q(i,j,s) & z(i+1,j)] v [-q(i,j,w) & z(i,j-1)]
+
+Para las clausulas tipo 3, se procedio a verificar la alcanzabilidad 
+de las celdas. Se modelaron las clausulas dadas en la ayuda adaptadas
+a nuestro tablero. 
+
+r(c,c) && r(c,c') & -q(c',n) => r(c,c'')
+
+Para las clausulas tipo 4, se procedio a verificar que para cada par
+de celdas internas, estas deben ser alcanzables entre si.
+
+(-z(c) && -z(c')) => r(c,c')
+
+Para las clausulas tipo 5, se procedio a verificar que para cada punto
+en la reticula, solo existan 2 segmentos conectados a cada uno o no exista
+ninguno de ellos. 
+
+Las clausulas se modelaron de la siguiente forma:
+
+x1 = q(i,j,n) => {[q(i,j,w) || q(i-1,j,w) || q(i,j-1,n)] && [q(i,j,e) || q(i-1,j,e) || q(i,j+1,n)]} &&
+x2 = q(i,j,w) => {[q(i,j,n) || q(i,j-1,n) || q(i-1,j,w)] && [q(i,j,s) || q(i,j-1,s) || q(i+1,j,w)]} &&
+x3 = q(i,j,e) => {[q(i,j,n) || q(i,j+1,n) || q(i-1,j,e)] && [q(i,j,s) || q(i,j+1,s) || q(i+1,j,e)]} &&
+x4 = q(i,j,s) => {[q(i,j,w) || q(i+1,j,w) || q(i,j-1,s)] && [q(i,j,e) || q(i+1,j,e) || q(i,j+1,s)]} &&
+
+Ademas, las siguientes reglas que forzan a que para cada celda, cada uno de los puntos
+que forman un segmento, tengan solo 2 adyacentes. 
+
+Reglas para x1: 
+
+[q(i,j,n) && q(i,j,w) => -q(i-1,j,w) && -q(i,j-1,n)] && 
+[q(i,j,n) && q(i-1,j,w) => -q(i,j,w) && -q(i,j-1,n)] &&
+[q(i,j,n) && q(i,j-1,n) => -q(i-1,j,w) && -q(i,j,w)] &&
+[q(i,j,n) && q(i,j,e) => -q(i-1,j,e) && -q(i,j+1,n)] &&
+[q(i,j,n) && q(i-1,j,e) => -q(i,j,e) && -q(i,j+1,n)] &&
+[q(i,j,n) && q(i,j+1,n) => -q(i,j,e) && -q(i-1,j,e)]
+
+Se definiran de forma analoga 6 reglas para x2,x3 y x4 formando un total de 24 restricciones.
+
+Las clausulas se modelaron como un vector de vectores de enteros en los cuales cada posicion 
+del vector externo representaria un vector con una disyuncion de variables, de esta manera si
+el vector tenia 5 elementos, la restriccion seria:
+
+v[0] && v[1] && v[2] && v[3] && v[4]
+
+La teoría proposicional entonces la conforman todas las cláusulas de tipos
+0, 1, 2, 3 , 4 y 5. 
+
+Luego de generar todas las clausulas, se procede a escribirlas en el formato requerido para usar
+el minisat, mediante una funcion auxiliar que genera el archivo de salida, este recibe las restricciones
+de cada vector, sacando asi el numero de cada variable modelada en las celdas y formando una linea
+del archivo de salida con cada una.
+
+Al tener la salida del minisat, se pasa este archivo por un post procesador, el cual interpreta
+esa salida y la codifica en el formato requerido de 0s y 1s.

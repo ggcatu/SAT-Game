@@ -45,11 +45,11 @@ int main(int argc, char * argv[]){
 	int n, m, index;
     string line;
     string aux;
-	ifstream infile("ee.txt");
+	ifstream infile("Satout.txt");
     int N = 5, M = 5;
     N = atoi(argv[1]);
     M = atoi(argv[2]);
-    cout << "N: " << N << " M : " << M << endl;
+    cout << N << " " << M << " ";
     int i = 0, k = 0, p = 0;
     int f;
     int ee;
@@ -66,9 +66,6 @@ int main(int argc, char * argv[]){
             if (p == N)
                 break;
             if (i<6){
-
-               // cout << n << " ";
-
                 f = n;
                 if (i == 2){
                     horizontal.push_back(int(f)>0);
@@ -91,16 +88,13 @@ int main(int argc, char * argv[]){
                     k++;
                     if (k == M){
                         vertical.push_back(ee);
-                       // cout << endl;
                         cVector(horizontal);
                         cVector(vertical);
-                      //  cout << endl;
                         horizontal.clear();
                         vertical.clear();
                         k = 0;
                         p++;
                     }
-                    //cout << endl;
                     i = 1;
                     
                 }
@@ -108,6 +102,5 @@ int main(int argc, char * argv[]){
             i++;
         }
         cVector(last_horizontal);
-        // cout << endl << k;
 	}
 }
