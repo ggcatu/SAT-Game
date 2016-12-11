@@ -646,7 +646,7 @@ int main(int argc, char * argv[]){
         GenerarTres(n,m);
         GenerarCuatro(n,m);
         GenerarArchivo();
-        //system("minisat Sat.txt ee.txt");
-        //system("./post_processor");
+        system("minisat Sat.txt ee.txt");
+        system("post_processor");
 	}
 }
