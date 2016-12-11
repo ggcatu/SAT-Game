@@ -6,11 +6,9 @@ tablero = input("Coloque el input:")
 
 resultado = input("Coloque el output")
 '''
-tablero = "5 5 .223. .2.02 .3.2. 1.2.2 ..2.."
+tablero = "5 5 ..32. 222.3 0..1. 2.2.. .2323"
 
-resultado = "5 5 01110 010111 00001 010001 01100 011110 10101 001010 00000 001000 10111"
-
-
+resultado = "5 5 11011 101101 10101 010010 01111 000001 01001 011010 10111 111001 10111"
 
 tablero = tablero.split()
 resultado = resultado.split()
