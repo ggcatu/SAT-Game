@@ -624,18 +624,18 @@ void GenerarCinco(int N, int M){
             auxV.clear();
 
             ////////////////////
-            auxV.push_back(-n);
-            auxV.push_back(w);
-            if(i-1 >= 0){
-                auxV.push_back(-Celdas[i-1][j].w);
-            }
-            if(j-1 >= 0){
-                auxV.push_back(-Celdas[i][j-1].n);
-            }
-            ClausulasCinco.push_back(auxV);
-            auxV.clear();
+            // auxV.push_back(-n);
+            // auxV.push_back(w);
+            // if(i-1 >= 0){
+            //     auxV.push_back(-Celdas[i-1][j].w);
+            // }
+            // if(j-1 >= 0){
+            //     auxV.push_back(-Celdas[i][j-1].n);
+            // }
+            // ClausulasCinco.push_back(auxV);
+            // auxV.clear();
 
-            //  auxV.push_back(-n);
+            // auxV.push_back(-n);
             // auxV.push_back(-w);
             // if(i-1 >= 0){
             //     auxV.push_back(-Celdas[i-1][j].w);
@@ -646,7 +646,7 @@ void GenerarCinco(int N, int M){
             // ClausulasCinco.push_back(auxV);
             // auxV.clear();
 
-            //  auxV.push_back(-n);
+            // auxV.push_back(-n);
             // auxV.push_back(-w);
             // if(i-1 >= 0){
             //     auxV.push_back(Celdas[i-1][j].w);
