@@ -287,11 +287,11 @@ void GenerarDos(int N, int M){
         e = Celdas[0][j].e;
         w = Celdas[0][j].w;
         z = Celdas[0][j].z;
-        auxV.push_back(s);
+        auxV.push_back(n);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-s);
+        auxV.push_back(-n);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -303,11 +303,11 @@ void GenerarDos(int N, int M){
         e = Celdas[N-1][j].e;
         w = Celdas[N-1][j].w;
         z = Celdas[N-1][j].z;
-        auxV.push_back(n);
+        auxV.push_back(s);
         auxV.push_back(z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
-        auxV.push_back(-n);
+        auxV.push_back(-s);
         auxV.push_back(-z);
         ClausulasDos.push_back(auxV);
         auxV.clear();
@@ -332,7 +332,7 @@ void GenerarDos(int N, int M){
             auxV.push_back(Celdas[i-1][j].z);
             auxV.push_back(Celdas[i][j+1].z);
             auxV.push_back(Celdas[i+1][j].z);
-            auxV.push_back(Celdas[i-1][j].z);
+            auxV.push_back(Celdas[i][j-1].z);
             ClausulasDos.push_back(auxV);
             auxV.clear();
             auxV.push_back(z);
@@ -407,8 +407,8 @@ void GenerarCuatro(int N, int M){
        for(int j = 0; j < M; j++){
        		for(int p = 0; p < N; p++){
       			for(int q = 0; q < M; q++){
-		    		auxV.push_back(-Celdas[i][j].z);
-		    		auxV.push_back(-Celdas[p][q].z);
+		    		auxV.push_back(Celdas[i][j].z);
+		    		auxV.push_back(Celdas[p][q].z);
 		    		auxV.push_back(Celdas[i][j].r[p][q]);
 		    		ClausulasCuatro.push_back(auxV);
 		    		auxV.clear();
@@ -770,6 +770,9 @@ int main(int argc, char * argv[]){
         ClausulasCuatro.clear();
         ClausulasCinco.clear();
         clausula = 1;
+        cout << endl;
+        cout << endl;
+        cout << line << endl;
 	    istringstream iss(line);
         iss >> n >> m;
         Celdas.resize(n);
