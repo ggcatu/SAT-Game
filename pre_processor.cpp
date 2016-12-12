@@ -97,12 +97,7 @@ void GenerarUno(int N, int M){
             e = Celdas[i][j].e;
             w = Celdas[i][j].w;
             if(Celdas[i][j].etiqueta == '.'){
-                auxV.push_back(n);
-                auxV.push_back(s);
-                auxV.push_back(e);
-                auxV.push_back(w);
-                ClausulasUno.push_back(auxV);
-                auxV.clear();
+                ;
             }
             else if(Celdas[i][j].etiqueta == '0'){
                 auxV.push_back(-n);

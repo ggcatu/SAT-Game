@@ -6,10 +6,9 @@ tablero = input("Coloque el input:")
 
 resultado = input("Coloque el output")
 '''
-tablero = "5 5 2.... ..... .23.. ..01. .322."
+tablero = input()
 
-resultado = "5 5 11011 101101 01011 110000 10100 001100 11011 100001 01001 111010 10110"
-
+resultado = input()
 tablero = tablero.split()
 resultado = resultado.split()
 
@@ -53,7 +52,7 @@ tablero = tablero[2:]
 for i in range(len(tablero)):
 	for j in range(len(tablero[i])):
 		if (tablero[i][j] != '.'):
-			ax.text(j+alfa,N-i-1+alfa,tablero[i][j],fontsize = 40)
+			ax.text(j+alfa,N-i-1+alfa,tablero[i][j],fontsize = 10)
 
 
 
